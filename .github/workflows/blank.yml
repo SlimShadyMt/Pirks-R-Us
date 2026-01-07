@@ -1,0 +1,140 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v4
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      # Runs a set of commands using the runners shell
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+import random
+
+SHADY_TOPICS = [
+    "basements and blank notebooks",
+    "mic cords tangled like my thoughts",
+    "late nights in the back of the bus",
+    "scribbling hooks on receipts",
+    "cheap headphones and blown-out speakers",
+    "battles in parking lots",
+    "old friends that turned to echoes",
+    "scribbled verses on fast food bags",
+]
+
+SHADY_TONES = [
+    "sarcastic",
+    "unhinged",
+    "self-aware",
+    "bitterly honest",
+    "playful but dangerous",
+    "darkly comedic",
+]
+
+SHADY_ADLIBS = [
+    "yo",
+    "look",
+    "man",
+    "for real",
+    "I’m sayin",
+    "no joke",
+]
+
+SHADY_ENDERS = [
+    "like I’m still stuck in rewind.",
+    "’cause the past won’t sign the dotted line.",
+    "while my shadow tries to snatch my shine.",
+    "and the punchline keeps duckin’ my mind.",
+    "like the beat owes me somethin’ this time.",
+    "and the mirror won’t cosign the rhyme.",
+]
+
+
+def generate_shady_line() -> str:
+    """Generate one Slim Shady–inspired line (original, no real lyrics)."""
+    adlib = random.choice(SHADY_ADLIBS)
+    topic = random.choice(SHADY_TOPICS)
+    tone = random.choice(SHADY_TONES)
+    ender = random.choice(SHADY_ENDERS)
+
+    templates = [
+        f"{adlib}, I’ve been stuck on {topic}, {ender}",
+        f"{adlib}, this {tone} version of me lives in {topic}, {ender}",
+        f"I turn {topic} into a {tone} punchline, {ender}",
+        f"{adlib}, every bar from {topic} hits {tone}, {ender}",
+        f"In my head it’s {tone}, in my world it’s {topic}, {ender}",
+    ]
+
+    return random.choice(templates)
+
+
+def generate_shady_verse(lines: int = 4) -> str:
+    """Generate a short verse of multiple lines."""
+    return "\n".join(generate_shady_line() for _ in range(lines))
+
+
+if __name__ == "__main__":
+    print("\n=== Slim Shady–Inspired Generator (Original Bars) ===\n")
+    verse = generate_shady_verse(lines=8)
+    print(verse)
+    print("\n(Feel free to tweak the word pools to match your own alter ego.)\n")---
+
+### 3. `requirements.txt`
+
+To keep it super simple, you actually don’t *need* external packages, but let’s add `rich` just for nicer CLI output (optional).
+
+```text
+rich>=13.0.0python shady_generator.pypip install -r requirements.txtpython -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate# Slim Shady Playground
+
+Welcome to the **Slim Shady Playground** – a tiny lab for experimenting with Shady‑inspired flows, personas, and text generation.
+
+This project does **not** use or redistribute any real Eminem lyrics.  
+Instead, it plays with **style, rhythm, and persona** using original, generated lines.
+
+---
+
+## Features
+
+- 🔁 Simple "Slim Shady–inspired" line generator in Python
+- 🎭 Command‑line persona mode that talks back in a chaotic alter‑ego voice
+- 🧩 Easy to extend with your own bars, prompts, and behavior
+
+---
+
+## Getting started
+
+### 1. Clone the repo
+
+```bash
+git clone https://github.com/your-username/slim-shady-playground.git
+cd slim-shady-playgroundslim-shady-playground/
+├─ README.md
+├─ requirements.txt
+├─ shady_generator.py
+└─ cli_slim_shady.py
